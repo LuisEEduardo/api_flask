@@ -12,7 +12,7 @@ def getImagemComId():
     for caminho in caminhos:
         imagemOriginal = cv2.imread(caminho)
 
-        resizeImage = cv2.resize(imagemOriginal, (780, 540), interpolation = cv2.INTER_NEAREST)
+        resizeImage = cv2.resize(imagemOriginal, (220, 200), interpolation = cv2.INTER_NEAREST)
 
         imagemCinza = cv2.cvtColor(resizeImage, cv2.COLOR_BGR2GRAY)        
         path = caminho[13:]
