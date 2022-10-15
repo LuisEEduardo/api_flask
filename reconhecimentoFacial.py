@@ -1,5 +1,4 @@
 import cv2
-from PIL import Image
 
 def reconhecimento(imagemPath):
 
@@ -30,15 +29,10 @@ def reconhecimento(imagemPath):
         
         id = 0
 
+
         for (x, y, l, a) in facesDetectadas:
             imagemFace = cv2.resize(imagemCinza[y:y + a, x:x + l], (largura, altura))
-            cv2.rectangle(imagem, (x, y), (x + l, y + a), (0,0,255), 2)
-            
-            id, nome = EigenIdent.predict(imagemFace)
 
-            print(id)
-            print(nome)
-            
-            # cv2.putText(imagem, nome, (x,y +(a+30)), cv2.FONT_HERSHEY_TRIPLEX, 2, (0,255,0))
+            id, acuracia = EigenIdent.predict(imagemFace)
 
-        return id
+        return id, acuracia

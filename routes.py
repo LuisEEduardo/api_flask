@@ -29,11 +29,13 @@ def treino():
 def reconhecimento_facial():
     imagem = request.files["image"]    
 
-    print(imagem)
+    pathArquivo = os.path.join(app.config["IMAGE_UPLOADS"], imagem.filename)
 
-    imagem.save(os.path.join(app.config["IMAGE_UPLOADS"], imagem.filename))
+    imagem.save(pathArquivo)
 
-    id = reconhecimento(os.path.join(app.config["IMAGE_UPLOADS"], imagem.filename))
+    id = reconhecimento(pathArquivo)
+
+    os.remove(pathArquivo)
 
     return jsonify(id)
 
