@@ -2,10 +2,8 @@ import cv2
 import os
 import numpy as np
 
-eigenface = cv2.face.EigenFaceRecognizer_create(num_components=50)
-
 def getImagemComId():
-    
+
     caminhos = [os.path.join('fotos', f) for f in os.listdir('fotos')]
     #print(caminhos)
     faces = []
@@ -27,14 +25,15 @@ def getImagemComId():
         faces.append(resizeImage)
         
     return np.array(ids), faces   
-        
-print("Realizando treino")
-ids, faces = getImagemComId()
 
-#print(faces)
+
+def realiza_treino():
+    eigenface = cv2.face.EigenFaceRecognizer_create(num_components=50)
+    print("Realizando treino")
+    ids, faces = getImagemComId()
+    #print(faces)
         
-eigenface.train(faces, ids)
-eigenface.write("classEigen.yml")
-print("Treino finalizado.")
-    
+    eigenface.train(faces, ids)
+    eigenface.write("classEigen.yml")
+    print("Treino finalizado.")
 

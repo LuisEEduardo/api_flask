@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from processaImagem import processamento
+from treino import realiza_treino
 
 app = Flask("aps")
 
@@ -14,6 +15,11 @@ def processamento_imagem():
     processamento()
     return jsonify("ok")
 
+
+@app.route("/treino", methods=["GET"])
+def treino():
+    realiza_treino()
+    return jsonify("ok")
 
 
 
