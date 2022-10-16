@@ -27,14 +27,18 @@ def treino():
 
 @app.route("/reconhecimento", methods=["POST"])
 def reconhecimento_facial():
-    imagem = request.files["image"]    
+    # imagem = request.files["image"]    
 
-    pathArquivo = os.path.join(app.config["IMAGE_UPLOADS"], imagem.filename)
+    # pathArquivo = os.path.join(app.config["IMAGE_UPLOADS"], imagem.filename)
 
-    imagem.save(pathArquivo)
+    # imagem.save(pathArquivo)
+
+    print(request.json["filePath"])
+
+    pathArquivo = request.json["filePath"]
 
     id = reconhecimento(pathArquivo)
-
+    
     os.remove(pathArquivo)
 
     return jsonify(id)

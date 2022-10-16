@@ -33,6 +33,7 @@ def reconhecimento(imagemPath):
         for (x, y, l, a) in facesDetectadas:
             imagemFace = cv2.resize(imagemCinza[y:y + a, x:x + l], (largura, altura))
 
-            id, acuracia = EigenIdent.predict(imagemFace)
+            # id, acuracia = EigenIdent.predict(imagemFace)
+            result = EigenIdent.predict(imagemFace)
 
-        return id, acuracia
+        return result
